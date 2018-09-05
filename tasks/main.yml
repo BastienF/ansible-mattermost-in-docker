@@ -1,0 +1,53 @@
+---
+
+- name: create mattermost local directories
+  become: true
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+    - "{{ mattermost_postgres_data_location }}"
+    - "{{ mattermost_postgres_conf_location }}"
+    - "{{ mattermost_app_conf_location }}"
+
+- name: create mattermost app local directories
+  become: true
+  file:
+    owner: 2000
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+    - "{{ mattermost_app_data_location }}"
+    - "{{ mattermost_app_logs_location }}"
+    - "{{ mattermost_plugins_location }}"
+
+- name: create a postgres random password
+  become: true
+  copy:
+    force: false
+    content: "{{ lookup('password', '/dev/null length=32') }}"
+    dest: "{{ mattermost_postgres_pwd_file_location }}"
+    mode: 0600
+  notify:
+    - restart db
+    - restart app
+
+- name: Slurp password file
+  become: true
+  slurp:
+    src: "{{ mattermost_postgres_pwd_file_location }}"
+  register: slurped_password
+
+- set_fact:
+   postgres_password: "{{ slurped_password['content'] | b64decode }}"
+
+- name: create app configuration
+  become: true
+  template:
+    src: "config.json.j2"
+    dest: "{{ mattermost_app_conf_location }}/config.json"
+  notify: restart app
+
+- import_tasks: run_container.yml

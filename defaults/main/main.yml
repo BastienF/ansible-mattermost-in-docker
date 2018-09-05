@@ -1,0 +1,32 @@
+---
+
+# Name of the mattermost docker container
+mattermost_container_name: "mattermost"
+
+mattermost_root_location: "/opt/docker-data/{{ mattermost_container_name }}"
+
+# Path on the host filesystem where will be the mattermost conf file
+mattermost_conf_location: "{{ mattermost_root_location }}/conf"
+mattermost_postgres_conf_location: "{{ mattermost_conf_location }}/db"
+mattermost_app_conf_location: "{{ mattermost_conf_location }}/app"
+
+# Path on the host filesystem where will be the mattermost data
+mattermost_data_location: "{{ mattermost_root_location }}/data"
+mattermost_postgres_data_location: "{{ mattermost_data_location }}/db"
+mattermost_app_data_location: "{{ mattermost_data_location }}/app"
+
+# Path on the host filesystem where will be the mattermost logs
+mattermost_logs_location: "{{ mattermost_root_location }}/logs"
+mattermost_app_logs_location: "{{ mattermost_logs_location }}/app"
+
+# Path on the host filesystem where will be the mattermost plugins
+mattermost_plugins_location: "{{ mattermost_root_location }}/plugins"
+
+mattermost_docker_networks:
+  - name: "{{ bfiven_docker_network }}"
+#mattermost_docker_networks:
+#  - name: "docker_network"
+
+mattermost_postgres_pwd_file_location: "{{ mattermost_postgres_conf_location }}/postgres.passwd"
+
+mattermost_container_restart_policy: "always"

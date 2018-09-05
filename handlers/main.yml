@@ -1,0 +1,9 @@
+---
+
+- name: restart db
+  set_fact:
+    mattermost_db_docker_restart: true
+
+- name: restart app
+  set_fact:
+    mattermost_app_docker_restart: true

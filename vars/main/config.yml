@@ -1,0 +1,358 @@
+---
+
+mattermost_app_config:
+  ServiceSettings:
+    SiteURL: "{{ mattermost_user_app_config.ServiceSettings.SiteURL|default('') }}"
+    WebsocketURL: "{{ mattermost_user_app_config.ServiceSettings.WebsocketURL|default('') }}"
+    LicenseFileLocation: ''
+    ListenAddress: ":8000"
+    ConnectionSecurity: ''
+    TLSCertFile: ''
+    TLSKeyFile: ''
+    UseLetsEncrypt: false
+    LetsEncryptCertificateCacheFile: "./config/letsencrypt.cache"
+    Forward80To443: false
+    ReadTimeout: 300
+    WriteTimeout: 300
+    MaximumLoginAttempts: "{{ mattermost_user_app_config.ServiceSettings.MaximumLoginAttempts|default(10) }}"
+    GoroutineHealthThreshold: -1
+    GoogleDeveloperKey: ''
+    EnableOAuthServiceProvider: "{{ mattermost_user_app_config.ServiceSettings.EnableOAuthServiceProvider|default(false) }}"
+    EnableCustomEmoji: "{{ mattermost_user_app_config.ServiceSettings.EnableCustomEmoji|default(false) }}"
+    EnableEmojiPicker: "{{ mattermost_user_app_config.ServiceSettings.EnableEmojiPicker|default(true) }}"
+    EnableGifPicker: "{{ mattermost_user_app_config.ServiceSettings.EnableGifPicker|default(false) }}"
+    GfycatApiKey: 2_KtH_W5
+    GfycatApiSecret: 3wLVZPiswc3DnaiaFoLkDvB4X0IV6CpMkj4tf2inJRsBY6-FnkT08zGmppWFgeof
+    RestrictCustomEmojiCreation: all
+    RestrictPostDelete: all
+    AllowEditPost: "{{ mattermost_user_app_config.ServiceSettings.AllowEditPost|default('always') }}"
+    PostEditTimeLimit: "{{ mattermost_user_app_config.ServiceSettings.PostEditTimeLimit|default(-1) }}"
+    TimeBetweenUserTypingUpdatesMilliseconds: 5000
+    EnablePostSearch: true
+    EnableUserTypingMessages: true
+    EnableChannelViewedMessages: true
+    EnableUserStatuses: true
+    ExperimentalEnableAuthenticationTransfer: true
+    ClusterLogTimeoutMilliseconds: 2000
+    CloseUnusedDirectMessages: false
+    EnablePreviewFeatures: true
+    EnableTutorial: true
+    ExperimentalEnableDefaultChannelLeaveJoinMessages: true
+    ExperimentalGroupUnreadChannels: disabled
+    ExperimentalChannelOrganization: false
+    ImageProxyType: ''
+    ImageProxyURL: ''
+    ImageProxyOptions: ''
+    EnableAPITeamDeletion: false
+    ExperimentalEnableHardenedMode: false
+    ExperimentalLimitClientConfig: false
+    EnableEmailInvitations: "{{ mattermost_user_app_config.ServiceSettings.EnableEmailInvitations|default(false) }}"
+  TeamSettings:
+    SiteName: "{{ mattermost_user_app_config.TeamSettings.SiteName|default('Mattermost') }}"
+    MaxUsersPerTeam: "{{ mattermost_user_app_config.TeamSettings.MaxUsersPerTeam |default(50) }}"
+    EnableTeamCreation: "{{ mattermost_user_app_config.TeamSettings.EnableTeamCreation |default(true) }}"
+    EnableUserCreation: "{{ mattermost_user_app_config.TeamSettings.EnableUserCreation |default(true) }}"
+    EnableOpenServer: "{{ mattermost_user_app_config.TeamSettings.EnableOpenServer |default(false) }}"
+    EnableUserDeactivation: "{{ mattermost_user_app_config.TeamSettings.EnableUserDeactivation|default(false) }}"
+    RestrictCreationToDomains: "{{ mattermost_user_app_config.TeamSettings.RestrictCreationToDomains|default('') }}"
+    EnableCustomBrand: "{{ mattermost_user_app_config.TeamSettings.EnableCustomBrand |default(false) }}"
+    CustomBrandText: "{{ mattermost_user_app_config.TeamSettings.CustomBrandText |default('') }}"
+    CustomDescriptionText: "{{ mattermost_user_app_config.TeamSettings.CustomDescriptionText |default('') }}"
+    RestrictDirectMessage: "{{ mattermost_user_app_config.TeamSettings.RestrictDirectMessage |default('any') }}"
+    RestrictTeamInvite: "{{ mattermost_user_app_config.TeamSettings.RestrictTeamInvite |default('all') }}"
+    RestrictPublicChannelManagement: "{{ mattermost_user_app_config.TeamSettings.RestrictPublicChannelManagement |default('all') }}"
+    RestrictPrivateChannelManagement: "{{ mattermost_user_app_config.TeamSettings.RestrictPrivateChannelManagement |default('all') }}"
+    RestrictPublicChannelCreation: "{{ mattermost_user_app_config.TeamSettings.RestrictPublicChannelCreation |default('all') }}"
+    RestrictPrivateChannelCreation: "{{ mattermost_user_app_config.TeamSettings.RestrictPrivateChannelCreation |default('all') }}"
+    RestrictPublicChannelDeletion: "{{ mattermost_user_app_config.TeamSettings.RestrictPublicChannelDeletion |default('all') }}"
+    RestrictPrivateChannelDeletion: "{{ mattermost_user_app_config.TeamSettings.RestrictPrivateChannelDeletion |default('all') }}"
+    RestrictPrivateChannelManageMembers: "{{ mattermost_user_app_config.TeamSettings.RestrictPrivateChannelManageMembers |default('all') }}"
+    EnableXToLeaveChannelsFromLHS: "{{ mattermost_user_app_config.TeamSettings.EnableXToLeaveChannelsFromLHS |default(false) }}"
+    UserStatusAwayTimeout: "{{ mattermost_user_app_config.TeamSettings.UserStatusAwayTimeout |default(300) }}"
+    MaxChannelsPerTeam: "{{ mattermost_user_app_config.TeamSettings.MaxChannelsPerTeam |default(2000) }}"
+    MaxNotificationsPerChannel: "{{ mattermost_user_app_config.TeamSettings.MaxNotificationsPerChannel |default(1000) }}"
+    EnableConfirmNotificationsToChannel: "{{ mattermost_user_app_config.TeamSettings.EnableConfirmNotificationsToChannel |default(true) }}"
+    TeammateNameDisplay: "{{ mattermost_user_app_config.TeamSettings.TeammateNameDisplay |default('username') }}"
+    ExperimentalViewArchivedChannels: "{{ mattermost_user_app_config.TeamSettings.ExperimentalViewArchivedChannels |default(false) }}"
+    ExperimentalEnableAutomaticReplies: "{{ mattermost_user_app_config.TeamSettings.ExperimentalEnableAutomaticReplies |default(false) }}"
+    ExperimentalHideTownSquareinLHS: "{{ mattermost_user_app_config.TeamSettings.ExperimentalHideTownSquareinLHS |default(false) }}"
+    ExperimentalTownSquareIsReadOnly: "{{ mattermost_user_app_config.TeamSettings.ExperimentalTownSquareIsReadOnly |default(false) }}"
+    ExperimentalPrimaryTeam: "{{ mattermost_user_app_config.TeamSettings.ExperimentalPrimaryTeam |default('') }}"
+    ExperimentalDefaultChannels: "{{ mattermost_user_app_config.TeamSettings.ExperimentalDefaultChannels |default([]) }}"
+  ClientRequirements:
+    AndroidLatestVersion: ''
+    AndroidMinVersion: ''
+    DesktopLatestVersion: ''
+    DesktopMinVersion: ''
+    IosLatestVersion: ''
+    IosMinVersion: ''
+  SqlSettings:
+    DriverName: postgres
+    DataSource: "postgres://mmuser:{{ postgres_password|urlencode() }}@{{ mattermost_db_container_name }}:5432/mattermost?sslmode=disable&connect_timeout=10"
+    DataSourceReplicas: []
+    DataSourceSearchReplicas: []
+    MaxIdleConns: 20
+    ConnMaxLifetimeMilliseconds: 3600000
+    MaxOpenConns: 300
+    Trace: false
+    AtRestEncryptKey: jguJRyApvChgQWgNB0lnirHOOo7obeTQdOYTR86c9G3k9iCl
+    QueryTimeout: 30
+  LogSettings:
+    EnableConsole: false
+    ConsoleLevel: INFO
+    ConsoleJson: true
+    EnableFile: true
+    FileLevel: INFO
+    FileJson: true
+    FileLocation: ''
+    EnableWebhookDebugging: true
+    EnableDiagnostics: true
+  PasswordSettings:
+    MinimumLength: "{{ mattermost_user_app_config.PasswordSettings.MinimumLength|default(5) }}"
+    Lowercase: "{{ mattermost_user_app_config.PasswordSettings.Lowercase |default(false) }}"
+    Number: "{{ mattermost_user_app_config.PasswordSettings.Number |default(false) }}"
+    Uppercase: "{{ mattermost_user_app_config.PasswordSettings.Uppercase |default(false) }}"
+    Symbol: "{{ mattermost_user_app_config.PasswordSettings.Symbol |default(false) }}"
+  FileSettings:
+    EnableFileAttachments: true
+    EnableMobileUpload: true
+    EnableMobileDownload: true
+    MaxFileSize: 52428800
+    DriverName: local
+    Directory: "/mattermost/data/"
+    EnablePublicLink: true
+    PublicLinkSalt: STmOWzDmpIo4UgeZ6rr8Td1cWFF4qZw8Upt4o7u6LNSrVZVw
+    InitialFont: nunito-bold.ttf
+    AmazonS3AccessKeyId: ''
+    AmazonS3SecretAccessKey: ''
+    AmazonS3Bucket: ''
+    AmazonS3Region: ''
+    AmazonS3Endpoint: s3.amazonaws.com
+    AmazonS3SSL: true
+    AmazonS3SignV2: false
+    AmazonS3SSE: false
+    AmazonS3Trace: false
+  EmailSettings:
+    EnableSignUpWithEmail: "{{ mattermost_user_app_config.EmailSettings.EnableSignUpWithEmail|default(true) }}"
+    EnableSignInWithEmail: "{{ mattermost_user_app_config.EmailSettings.EnableSignInWithEmail |default(true) }}"
+    EnableSignInWithUsername: "{{ mattermost_user_app_config.EmailSettings.EnableSignInWithUsername |default(true) }}"
+    SendEmailNotifications: "{{ mattermost_user_app_config.EmailSettings.SendEmailNotifications |default(false) }}"
+    UseChannelInEmailNotifications: "{{ mattermost_user_app_config.EmailSettings.UseChannelInEmailNotifications |default(false) }}"
+    RequireEmailVerification: "{{ mattermost_user_app_config.EmailSettings.RequireEmailVerification |default(false) }}"
+    FeedbackName: "{{ mattermost_user_app_config.EmailSettings.FeedbackName |default('') }}"
+    FeedbackEmail: "{{ mattermost_user_app_config.EmailSettings.FeedbackEmail |default('') }}"
+    FeedbackOrganization: "{{ mattermost_user_app_config.EmailSettings.FeedbackOrganization |default('') }}"
+    EnableSMTPAuth: "{{ mattermost_user_app_config.EmailSettings.EnableSMTPAuth |default(false) }}"
+    SMTPUsername: "{{ mattermost_user_app_config.EmailSettings.SMTPUsername |default('') }}"
+    SMTPPassword: "{{ mattermost_user_app_config.EmailSettings.SMTPPassword |default('') }}"
+    SMTPServer: "{{ mattermost_user_app_config.EmailSettings.SMTPServer |default('') }}"
+    SMTPPort: "{{ mattermost_user_app_config.EmailSettings.SMTPPort |default('') }}"
+    ConnectionSecurity: "{{ mattermost_user_app_config.EmailSettings.ConnectionSecurity |default('') }}"
+    InviteSalt: "{{ mattermost_user_app_config.EmailSettings.InviteSalt |default('tpLptrtvi6uweU0vKmjWr5R8vHhYi97nG36X89SuySGCxJEj') }}"
+    SendPushNotifications: "{{ mattermost_user_app_config.EmailSettings.SendPushNotifications |default(false) }}"
+    PushNotificationServer: "{{ mattermost_user_app_config.EmailSettings.PushNotificationServer |default('') }}"
+    PushNotificationContents: "{{ mattermost_user_app_config.EmailSettings.PushNotificationContents |default('generic') }}"
+    EnableEmailBatching: "{{ mattermost_user_app_config.EmailSettings.EnableEmailBatching |default(false) }}"
+    EmailBatchingBufferSize: "{{ mattermost_user_app_config.EmailSettings.EmailBatchingBufferSize |default(256) }}"
+    EmailBatchingInterval: "{{ mattermost_user_app_config.EmailSettings.EmailBatchingInterval |default(30) }}"
+    EnablePreviewModeBanner: "{{ mattermost_user_app_config.EmailSettings.EnablePreviewModeBanner |default(true) }}"
+    SkipServerCertificateVerification: "{{ mattermost_user_app_config.EmailSettings.SkipServerCertificateVerification |default(false) }}"
+    EmailNotificationContentsType: "{{ mattermost_user_app_config.EmailSettings.EmailNotificationContentsType |default('full') }}"
+    LoginButtonColor: "{{ mattermost_user_app_config.EmailSettings.LoginButtonColor |default('') }}"
+    LoginButtonBorderColor: "{{ mattermost_user_app_config.EmailSettings.LoginButtonBorderColor |default('') }}"
+    LoginButtonTextColor: "{{ mattermost_user_app_config.EmailSettings.LoginButtonTextColor |default('') }}"
+  ExtensionSettings:
+    EnableExperimentalExtensions: false
+    AllowedExtensionsIDs: []
+  RateLimitSettings:
+    Enable: true
+    PerSec: 10
+    MaxBurst: 100
+    MemoryStoreSize: 10000
+    VaryByRemoteAddr: true
+    VaryByUser: false
+    VaryByHeader: ''
+  PrivacySettings:
+    ShowEmailAddress: "{{ mattermost_user_app_config.PrivacySettings.ShowEmailAddress |default(true) }}"
+    ShowFullName: "{{ mattermost_user_app_config.PrivacySettings.ShowFullName |default(true) }}"
+  SupportSettings:
+    TermsOfServiceLink: "{{ mattermost_user_app_config.SupportSettings.TermsOfServiceLink |default('https://about.mattermost.com/default-terms/') }}"
+    PrivacyPolicyLink: "{{ mattermost_user_app_config.SupportSettings.PrivacyPolicyLink |default('https://about.mattermost.com/default-privacy-policy/') }}"
+    AboutLink: "{{ mattermost_user_app_config.SupportSettings.AboutLink |default('https://about.mattermost.com/default-about/') }}"
+    HelpLink: "{{ mattermost_user_app_config.SupportSettings.HelpLink |default('https://about.mattermost.com/default-help/') }}"
+    ReportAProblemLink: "{{ mattermost_user_app_config.SupportSettings.ReportAProblemLink |default('https://about.mattermost.com/default-report-a-problem/') }}"
+    SupportEmail: "{{ mattermost_user_app_config.SupportSettings.SupportEmail |default('feedback@mattermost.com') }}"
+  AnnouncementSettings:
+    EnableBanner: false
+    BannerText: ''
+    BannerColor: "#f2a93b"
+    BannerTextColor: "#333333"
+    AllowBannerDismissal: true
+  ThemeSettings:
+    EnableThemeSelection: true
+    DefaultTheme: default
+    AllowCustomThemes: true
+    AllowedThemes: []
+  GitLabSettings:
+    Enable: false
+    Secret: ''
+    Id: ''
+    Scope: ''
+    AuthEndpoint: ''
+    TokenEndpoint: ''
+    UserApiEndpoint: ''
+  GoogleSettings:
+    Enable: false
+    Secret: ''
+    Id: ''
+    Scope: profile email
+    AuthEndpoint: https://accounts.google.com/o/oauth2/v2/auth
+    TokenEndpoint: https://www.googleapis.com/oauth2/v4/token
+    UserApiEndpoint: https://www.googleapis.com/plus/v1/people/me
+  Office365Settings:
+    Enable: false
+    Secret: ''
+    Id: ''
+    Scope: User.Read
+    AuthEndpoint: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+    TokenEndpoint: https://login.microsoftonline.com/common/oauth2/v2.0/token
+    UserApiEndpoint: https://graph.microsoft.com/v1.0/me
+  LdapSettings:
+    Enable: false
+    EnableSync: false
+    LdapServer: ''
+    LdapPort: 389
+    ConnectionSecurity: ''
+    BaseDN: ''
+    BindUsername: ''
+    BindPassword: ''
+    UserFilter: ''
+    FirstNameAttribute: ''
+    LastNameAttribute: ''
+    EmailAttribute: ''
+    UsernameAttribute: ''
+    NicknameAttribute: ''
+    IdAttribute: ''
+    PositionAttribute: ''
+    LoginIdAttribute: ''
+    SyncIntervalMinutes: 60
+    SkipCertificateVerification: false
+    QueryTimeout: 60
+    MaxPageSize: 0
+    LoginFieldName: ''
+    LoginButtonColor: ''
+    LoginButtonBorderColor: ''
+    LoginButtonTextColor: ''
+  ComplianceSettings:
+    Enable: false
+    Directory: "./data/"
+    EnableDaily: false
+  LocalizationSettings:
+    DefaultServerLocale: "{{ mattermost_user_app_config.LocalizationSettings.DefaultServerLocale |default('en') }}"
+    DefaultClientLocale: "{{ mattermost_user_app_config.LocalizationSettings.DefaultClientLocale |default('en') }}"
+    AvailableLocales: "{{ mattermost_user_app_config.LocalizationSettings.DefaultServerLocale |default('') }}"
+  SamlSettings:
+    Enable: false
+    EnableSyncWithLdap: false
+    Verify: true
+    Encrypt: true
+    IdpUrl: ''
+    IdpDescriptorUrl: ''
+    AssertionConsumerServiceURL: ''
+    ScopingIDPProviderId: ''
+    ScopingIDPName: ''
+    IdpCertificateFile: ''
+    PublicCertificateFile: ''
+    PrivateKeyFile: ''
+    FirstNameAttribute: ''
+    LastNameAttribute: ''
+    EmailAttribute: ''
+    UsernameAttribute: ''
+    NicknameAttribute: ''
+    LocaleAttribute: ''
+    PositionAttribute: ''
+    LoginButtonText: With SAML
+    LoginButtonColor: ''
+    LoginButtonBorderColor: ''
+    LoginButtonTextColor: ''
+  NativeAppSettings:
+    AppDownloadLink: https://about.mattermost.com/downloads/
+    AndroidAppDownloadLink: https://about.mattermost.com/mattermost-android-app/
+    IosAppDownloadLink: https://about.mattermost.com/mattermost-ios-app/
+  ClusterSettings:
+    Enable: false
+    ClusterName: ''
+    OverrideHostname: ''
+    UseIpAddress: true
+    UseExperimentalGossip: false
+    ReadOnlyConfig: true
+    GossipPort: 8074
+    StreamingPort: 8075
+    MaxIdleConns: 100
+    MaxIdleConnsPerHost: 128
+    IdleConnTimeoutMilliseconds: 90000
+  MetricsSettings:
+    Enable: false
+    BlockProfileRate: 0
+    ListenAddress: ":8067"
+  ExperimentalSettings:
+    ClientSideCertEnable: false
+    ClientSideCertCheck: secondary
+  AnalyticsSettings:
+    MaxUsersForStatistics: 2500
+  WebrtcSettings:
+    Enable: false
+    GatewayWebsocketUrl: ''
+    GatewayAdminUrl: ''
+    GatewayAdminSecret: ''
+    StunURI: ''
+    TurnURI: ''
+    TurnUsername: ''
+    TurnSharedKey: ''
+  ElasticsearchSettings:
+    ConnectionUrl: http://dockerhost:9200
+    Username: elastic
+    Password: changeme
+    EnableIndexing: false
+    EnableSearching: false
+    Sniff: true
+    PostIndexReplicas: 1
+    PostIndexShards: 1
+    AggregatePostsAfterDays: 365
+    PostsAggregatorJobStartTime: '03:00'
+    IndexPrefix: ''
+    LiveIndexingBatchSize: 1
+    BulkIndexingTimeWindowSeconds: 3600
+    RequestTimeoutSeconds: 30
+  DataRetentionSettings:
+    EnableMessageDeletion: "{{ mattermost_user_app_config.DataRetentionSettings.EnableMessageDeletion |default(false) }}"
+    EnableFileDeletion: "{{ mattermost_user_app_config.DataRetentionSettings.EnableFileDeletion |default(false) }}"
+    MessageRetentionDays: "{{ mattermost_user_app_config.DataRetentionSettings.MessageRetentionDays |default(365) }}"
+    FileRetentionDays: "{{ mattermost_user_app_config.DataRetentionSettings.FileRetentionDays |default(365) }}"
+    DeletionJobStartTime: "{{ mattermost_user_app_config.DataRetentionSettings.DeletionJobStartTime |default('02:00') }}"
+  MessageExportSettings:
+    EnableExport: false
+    ExportFormat: actiance
+    DailyRunTime: '01:00'
+    ExportFromTimestamp: 0
+    BatchSize: 10000
+    GlobalRelaySettings:
+      CustomerType: A9
+      SmtpUsername: ''
+      SmtpPassword: ''
+      EmailAddress: ''
+  JobSettings:
+    RunJobs: true
+    RunScheduler: true
+  PluginSettings:
+    Enable: true
+    EnableUploads: false
+    Directory: "/mattermost/plugins/"
+    ClientDirectory: "./client/plugins"
+    Plugins: {}
+    PluginStates: {}
+  DisplaySettings:
+    CustomUrlSchemes: []
+    ExperimentalTimezone: false
+  TimezoneSettings:
+    SupportedTimezonesPath: timezones.json
