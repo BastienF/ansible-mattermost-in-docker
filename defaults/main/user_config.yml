@@ -74,7 +74,6 @@ mattermost_user_app_config:
 #    SMTPServer: ''
 #    SMTPPort: ''
 #    ConnectionSecurity: ''
-#    InviteSalt: tpLptrtvi6uweU0vKmjWr5R8vHhYi97nG36X89SuySGCxJEj
 #    SendPushNotifications: false
 #    PushNotificationServer: ''
 #    PushNotificationContents: generic

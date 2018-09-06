@@ -8,7 +8,6 @@
     recurse: true
   with_items:
     - "{{ mattermost_postgres_data_location }}"
-    - "{{ mattermost_postgres_conf_location }}"
     - "{{ mattermost_app_conf_location }}"
 
 - name: create mattermost app local directories
@@ -23,25 +22,38 @@
     - "{{ mattermost_app_logs_location }}"
     - "{{ mattermost_plugins_location }}"
 
-- name: create a postgres random password
+- name: create a secrets file
   become: true
   copy:
     force: false
-    content: "{{ lookup('password', '/dev/null length=32') }}"
-    dest: "{{ mattermost_postgres_pwd_file_location }}"
+    content: "{}"
+    dest: "{{ mattermost_secrets_file_location }}"
     mode: 0600
-  notify:
-    - restart db
-    - restart app
 
-- name: Slurp password file
+- name: slurp secret file
   become: true
   slurp:
-    src: "{{ mattermost_postgres_pwd_file_location }}"
-  register: slurped_password
+    src: "{{ mattermost_secrets_file_location }}"
+  register: slurped_secrets
 
 - set_fact:
-   postgres_password: "{{ slurped_password['content'] | b64decode }}"
+   secrets_json: "{{ slurped_secrets['content'] | b64decode | from_json }}"
+
+- name: enrich secrets
+  set_fact:
+      secrets_json: "{{ secrets_json | combine( {item: lookup('password', '/dev/null length=48 chars=ascii_letters,digits') } ) }}"
+  when: secrets_json[item] is undefined
+  with_items:
+    - "EmailSettings_InviteSalt"
+    - "FileSettings_PublicLinkSalt"
+    - "PostgresPassword"
+
+- name: dump secrets file
+  become: true
+  copy:
+    content: "{{ secrets_json | to_nice_json }}"
+    dest: "{{ mattermost_secrets_file_location }}"
+    mode: 0600
 
 - name: create app configuration
   become: true

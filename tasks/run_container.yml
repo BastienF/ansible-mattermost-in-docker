@@ -22,7 +22,7 @@
       - "/etc/localtime:/etc/localtime:ro"
     env:
       POSTGRES_USER: mmuser
-      POSTGRES_PASSWORD: "{{ postgres_password}}"
+      POSTGRES_PASSWORD: "{{ secrets_json.PostgresPassword}}"
       POSTGRES_DB: mattermost
 
 - name: Start or restart mattermost app container
@@ -43,6 +43,6 @@
     env:
       # set same as db credentials and dbname
       MM_USERNAME: mmuser
-      MM_PASSWORD: "{{ postgres_password}}"
+      MM_PASSWORD: "{{ secrets_json.PostgresPassword}}"
       MM_DBNAME: mattermost
       DB_HOST: "{{ mattermost_db_container_name }}"

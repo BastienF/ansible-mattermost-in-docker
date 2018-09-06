@@ -88,7 +88,7 @@ mattermost_app_config:
     IosMinVersion: ''
   SqlSettings:
     DriverName: postgres
-    DataSource: "postgres://mmuser:{{ postgres_password|urlencode() }}@{{ mattermost_db_container_name }}:5432/mattermost?sslmode=disable&connect_timeout=10"
+    DataSource: "postgres://mmuser:{{ secrets_json.PostgresPassword|urlencode() }}@{{ mattermost_db_container_name }}:5432/mattermost?sslmode=disable&connect_timeout=10"
     DataSourceReplicas: []
     DataSourceSearchReplicas: []
     MaxIdleConns: 20
@@ -121,7 +121,7 @@ mattermost_app_config:
     DriverName: local
     Directory: "/mattermost/data/"
     EnablePublicLink: true
-    PublicLinkSalt: STmOWzDmpIo4UgeZ6rr8Td1cWFF4qZw8Upt4o7u6LNSrVZVw
+    PublicLinkSalt: "{{ secrets_json.FileSettings_PublicLinkSalt }}"
     InitialFont: nunito-bold.ttf
     AmazonS3AccessKeyId: ''
     AmazonS3SecretAccessKey: ''
@@ -148,7 +148,7 @@ mattermost_app_config:
     SMTPServer: "{{ mattermost_user_app_config.EmailSettings.SMTPServer |default('') }}"
     SMTPPort: "{{ mattermost_user_app_config.EmailSettings.SMTPPort |default('') }}"
     ConnectionSecurity: "{{ mattermost_user_app_config.EmailSettings.ConnectionSecurity |default('') }}"
-    InviteSalt: "{{ mattermost_user_app_config.EmailSettings.InviteSalt |default('tpLptrtvi6uweU0vKmjWr5R8vHhYi97nG36X89SuySGCxJEj') }}"
+    InviteSalt: "{{ secrets_json.EmailSettings_InviteSalt }}"
     SendPushNotifications: "{{ mattermost_user_app_config.EmailSettings.SendPushNotifications |default(false) }}"
     PushNotificationServer: "{{ mattermost_user_app_config.EmailSettings.PushNotificationServer |default('') }}"
     PushNotificationContents: "{{ mattermost_user_app_config.EmailSettings.PushNotificationContents |default('generic') }}"

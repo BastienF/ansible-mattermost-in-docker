@@ -7,7 +7,6 @@ mattermost_root_location: "/opt/docker-data/{{ mattermost_container_name }}"
 
 # Path on the host filesystem where will be the mattermost conf file
 mattermost_conf_location: "{{ mattermost_root_location }}/conf"
-mattermost_postgres_conf_location: "{{ mattermost_conf_location }}/db"
 mattermost_app_conf_location: "{{ mattermost_conf_location }}/app"
 
 # Path on the host filesystem where will be the mattermost data
@@ -27,6 +26,6 @@ mattermost_docker_networks:
 #mattermost_docker_networks:
 #  - name: "docker_network"
 
-mattermost_postgres_pwd_file_location: "{{ mattermost_postgres_conf_location }}/postgres.passwd"
+mattermost_secrets_file_location: "{{ mattermost_conf_location }}/secrets.json"
 
 mattermost_container_restart_policy: "always"
