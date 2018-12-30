@@ -46,3 +46,15 @@
       MM_PASSWORD: "{{ secrets_json.PostgresPassword}}"
       MM_DBNAME: mattermost
       DB_HOST: "{{ mattermost_db_container_name }}"
+
+- name: Start or restart mattermost push proxy container
+  become: true
+  docker_container:
+    name: "{{ mattermost_push_proxy_container_name }}"
+    image: bastienf/mattermost-push-proxy:5.4.0
+    state: "{{ mattermost_docker_state | default('started') }}"
+    restart: "{{ mattermost_push_proxy_docker_restart | default(false) | bool }}"
+    networks: "{{ mattermost_docker_networks }}"
+    restart_policy: "{{ mattermost_container_restart_policy }}"
+    volumes:
+    - "{{ mattermost_push_proxy_conf_location }}/mattermost-push-proxy.json:/tmp/mattermost-push-proxy.json:ro"

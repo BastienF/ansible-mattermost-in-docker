@@ -9,6 +9,7 @@
   with_items:
     - "{{ mattermost_postgres_data_location }}"
     - "{{ mattermost_app_conf_location }}"
+    - "{{ mattermost_push_proxy_conf_location }}"
 
 - name: create mattermost app local directories
   become: true
@@ -61,5 +62,12 @@
     src: "config.json.j2"
     dest: "{{ mattermost_app_conf_location }}/config.json"
   notify: restart app
+
+- name: create push proxy configuration
+  become: true
+  template:
+    src: "mattermost-push-proxy.json.j2"
+    dest: "{{ mattermost_push_proxy_conf_location }}/mattermost-push-proxy.json"
+  notify: restart push proxy
 
 - import_tasks: run_container.yml

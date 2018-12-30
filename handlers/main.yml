@@ -7,3 +7,7 @@
 - name: restart app
   set_fact:
     mattermost_app_docker_restart: true
+
+- name: restart push proxy
+  set_fact:
+    mattermost_push_proxy_docker_restart: true
