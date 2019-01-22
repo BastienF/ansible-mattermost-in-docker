@@ -18,6 +18,7 @@ mattermost_app_config:
     GoroutineHealthThreshold: -1
     GoogleDeveloperKey: ''
     EnableOAuthServiceProvider: "{{ mattermost_user_app_config.ServiceSettings.EnableOAuthServiceProvider|default(false) }}"
+    EnableLinkPreviews: "{{ mattermost_user_app_config.ServiceSettings.EnableLinkPreviews|default(false) }}"
     EnableCustomEmoji: "{{ mattermost_user_app_config.ServiceSettings.EnableCustomEmoji|default(false) }}"
     EnableEmojiPicker: "{{ mattermost_user_app_config.ServiceSettings.EnableEmojiPicker|default(true) }}"
     EnableGifPicker: "{{ mattermost_user_app_config.ServiceSettings.EnableGifPicker|default(false) }}"

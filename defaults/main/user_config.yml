@@ -15,6 +15,7 @@ mattermost_user_app_config:
 #    WebsocketURL: ''
 #    MaximumLoginAttempts: 10
 #    EnableOAuthServiceProvider: false
+#    EnableLinkPreviews: false
 #    EnableCustomEmoji: false
 #    EnableEmojiPicker: true
 #    EnableGifPicker: false
