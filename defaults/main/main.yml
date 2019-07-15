@@ -23,6 +23,8 @@ mattermost_app_logs_location: "{{ mattermost_logs_location }}/app"
 
 # Path on the host filesystem where will be the mattermost plugins
 mattermost_plugins_location: "{{ mattermost_root_location }}/plugins"
+mattermost_client_plugins_location: "{{ mattermost_root_location }}/client-plugins"
+
 
 #mattermost_docker_networks:
 #  - name: "docker_network"

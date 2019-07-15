@@ -12,7 +12,7 @@
   become: true
   docker_container:
     name: "{{ mattermost_db_container_name }}"
-    image: mattermost/mattermost-prod-db:5.4.0
+    image: mattermost/mattermost-prod-db:5.12.1
     state: "{{ mattermost_docker_state | default('started') }}"
     restart: "{{ mattermost_db_docker_restart | default(false) | bool }}"
     networks: "{{ mattermost_docker_networks }}"
@@ -29,7 +29,7 @@
   become: true
   docker_container:
     name: "{{ mattermost_app_container_name }}"
-    image: bastienf/mattermost-app-prod
+    image: bastienf/mattermost-app:5.12.1
     state: "{{ mattermost_docker_state | default('started') }}"
     restart: "{{ mattermost_app_docker_restart | default(false) | bool }}"
     networks: "{{ mattermost_docker_networks }}"
@@ -39,6 +39,7 @@
       - "{{ mattermost_app_data_location }}:/mattermost/data:rw"
       - "{{ mattermost_app_logs_location }}:/mattermost/logs:rw"
       - "{{ mattermost_plugins_location }}:/mattermost/plugins:rw"
+      - "{{ mattermost_client_plugins_location }}:/mattermost/client/plugins:rw"
       - /etc/localtime:/etc/localtime:ro
     env:
       # set same as db credentials and dbname
@@ -51,7 +52,7 @@
   become: true
   docker_container:
     name: "{{ mattermost_push_proxy_container_name }}"
-    image: bastienf/mattermost-push-proxy:5.4.0
+    image: bastienf/mattermost-push-proxy:5.9.0
     state: "{{ mattermost_docker_state | default('started') }}"
     restart: "{{ mattermost_push_proxy_docker_restart | default(false) | bool }}"
     networks: "{{ mattermost_docker_networks }}"

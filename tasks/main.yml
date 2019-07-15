@@ -22,6 +22,7 @@
     - "{{ mattermost_app_data_location }}"
     - "{{ mattermost_app_logs_location }}"
     - "{{ mattermost_plugins_location }}"
+    - "{{ mattermost_client_plugins_location }}"
 
 - name: create a secrets file
   become: true
