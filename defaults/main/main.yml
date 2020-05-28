@@ -32,3 +32,5 @@ mattermost_client_plugins_location: "{{ mattermost_root_location }}/client-plugi
 mattermost_secrets_file_location: "{{ mattermost_conf_location }}/secrets.json"
 
 mattermost_container_restart_policy: "always"
+
+mattermost_default_puid: "2000"

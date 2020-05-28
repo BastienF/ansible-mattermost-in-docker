@@ -62,7 +62,15 @@
   template:
     src: "config.json.j2"
     dest: "{{ mattermost_app_conf_location }}/config.json"
+    force: false
+    owner: "{{ mattermost_default_puid }}"
   notify: restart app
+
+- name: change app configuration owner to mattermost pid
+  become: true
+  file:
+    path: "{{ mattermost_app_conf_location }}/config.json"
+    owner: "{{ mattermost_default_puid }}"
 
 - name: create push proxy configuration
   become: true
