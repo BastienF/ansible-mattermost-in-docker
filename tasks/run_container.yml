@@ -12,7 +12,7 @@
   become: true
   docker_container:
     name: "{{ mattermost_db_container_name }}"
-    image: mattermost/mattermost-prod-db:5.23.0
+    image: mattermost/mattermost-prod-db:v5.31.1
     state: "{{ mattermost_docker_state | default('started') }}"
     restart: "{{ mattermost_db_docker_restart | default(false) | bool }}"
     networks: "{{ mattermost_docker_networks }}"
@@ -29,7 +29,7 @@
   become: true
   docker_container:
     name: "{{ mattermost_app_container_name }}"
-    image: bastienf/mattermost-app:5.23.0
+    image: bastienf/mattermost-app:v5.31.1
     state: "{{ mattermost_docker_state | default('started') }}"
     restart: "{{ mattermost_app_docker_restart | default(false) | bool }}"
     networks: "{{ mattermost_docker_networks }}"
@@ -52,7 +52,7 @@
   become: true
   docker_container:
     name: "{{ mattermost_push_proxy_container_name }}"
-    image: bastienf/mattermost-push-proxy:5.9.0
+    image: bastienf/mattermost-push-proxy:v5.22.4
     state: "{{ mattermost_docker_state | default('started') }}"
     restart: "{{ mattermost_push_proxy_docker_restart | default(false) | bool }}"
     networks: "{{ mattermost_docker_networks }}"
